@@ -1,0 +1,395 @@
+$white: #ffffff;
+$background-elements-light: #f4f5f9;
+$markup-lines: 1px solid rgba(66, 86, 122, 0.1);
+$circle-wrapper-bottom: 1px solid #c7cdd9;
+$circle-line: 1px solid rgba(66, 86, 122, 0.2);
+$point-dark: #303e58;
+$point-light: #f4f5f9;
+$text-blue: #42567a;
+$header-blue: #3877ee;
+$header-decor-gradient: linear-gradient(180deg, #3877ee 0%, #ef5da8 100%);
+$fadeout-gradient: linear-gradient(
+	90deg,
+	rgba(255, 255, 255, 0.3) 0%,
+	rgba(255, 255, 255, 1) 100%
+);
+$button-shadow: 0 0 15px 0 rgba(56, 119, 238, 0.1);
+$button-shadow-hover: 0 0 15px 0 rgba(56, 119, 238, 0.3);
+$year-blue: #5d5fef;
+$year-purple: #ef5da8;
+
+.container {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	justify-content: space-between;
+	height: 100vh;
+	padding: 59px 20px 141px 20px;
+
+	@media (min-width: 1024px) {
+		padding: 0 160px 0 320px;
+	}
+}
+
+.circle-wrapper {
+	padding-bottom: 58px;
+	border-bottom: $circle-wrapper-bottom;
+	width: 100%;
+
+	@media (min-width: 1024px) {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		border-right: $markup-lines;
+		border-left: $markup-lines;
+		border-bottom: none;
+	}
+}
+
+.horizontal-line {
+	display: none;
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	height: 0;
+	border-top: $markup-lines;
+
+	@media (min-width: 1024px) {
+		display: block;
+	}
+}
+
+.vertical-line {
+	display: none;
+	position: absolute;
+	right: 50%;
+	width: 0;
+	top: 0;
+	bottom: 0;
+	border-right: $markup-lines;
+
+	@media (min-width: 1024px) {
+		display: block;
+	}
+}
+
+.circle {
+	display: none;
+	position: absolute;
+	width: 36%;
+	aspect-ratio: 1/1;
+	border: $circle-line;
+	border-radius: 50%;
+
+	@media (min-width: 1024px) {
+		display: block;
+	}
+}
+
+.points {
+	display: none;
+	width: 36%;
+	aspect-ratio: 1/1;
+	transition: transform 0.7s ease-in-out;
+	z-index: 10;
+
+	@media (min-width: 1024px) {
+		display: block;
+	}
+}
+
+.point {
+	width: 6px;
+	height: 6px;
+	background-color: $point-dark;
+	border-radius: 50%;
+	position: absolute;
+	transform: translate(-50%, -50%);
+	transition:
+		width 0.7s ease-in-out,
+		height 0.7s ease-in-out,
+		background-color 0.7s ease-in-out;
+	display: none;
+	align-items: center;
+	justify-content: center;
+
+	&:hover {
+		width: 56px;
+		height: 56px;
+		border: 1px solid $point-dark;
+		background-color: $point-light;
+		cursor: pointer;
+
+		& > span {
+			display: block;
+		}
+	}
+
+	&.active {
+		width: 56px;
+		height: 56px;
+		border: 1px solid $point-dark;
+		background-color: $point-light;
+
+		& > span {
+			display: block;
+		}
+	}
+
+	& > span {
+		display: none;
+		transition: transform 0.7s ease-in-out;
+		user-select: none;
+	}
+
+	@media (min-width: 1024px) {
+		display: flex;
+	}
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	font-size: 56px;
+	color: $text-blue;
+
+	@media (min-width: 1024px) {
+		position: absolute;
+		top: 170px;
+	}
+}
+
+.header::before {
+	display: none;
+	position: absolute;
+	content: "";
+	width: 5px;
+	height: 120px;
+	background: $header-decor-gradient;
+
+	@media (min-width: 1024px) {
+		display: block;
+	}
+}
+
+.header-text {
+	display: flex;
+	flex-direction: column;
+	font-size: 20px;
+	color: $text-blue;
+
+	@media (min-width: 1024px) {
+		padding-left: 78px;
+		font-size: 56px;
+	}
+}
+
+.years {
+	display: flex;
+	gap: 26px;
+	font-size: 56px;
+	font-weight: 700;
+	letter-spacing: 0.02em;
+	user-select: none;
+
+	&__start {
+		color: $year-blue;
+	}
+	&__end {
+		color: $year-purple;
+	}
+
+	@media (min-width: 1024px) {
+		position: absolute;
+		justify-content: space-between;
+		font-size: 200px;
+	}
+}
+
+.count-control {
+	position: absolute;
+	top: 15px;
+	right: 5px;
+
+	@media (min-width: 1024px) {
+		top: 200px;
+		right: 10px;
+	}
+}
+
+.swiper-container {
+	height: 114px;
+	width: 100%;
+
+	@media (min-width: 1024px) {
+		position: absolute;
+		bottom: 104px;
+		width: calc(100% - 480px);
+		height: 135px;
+		padding-left: 80px;
+		padding-right: 160px;
+	}
+}
+
+.swiper::after {
+	content: "";
+	display: block;
+	position: absolute;
+	right: -5px;
+	bottom: 0;
+	width: 40%;
+	height: 100%;
+	background: $fadeout-gradient;
+	z-index: 1;
+	pointer-events: none;
+
+	@media (min-width: 1024px) {
+		display: none;
+	}
+}
+
+.swiper-button {
+	position: absolute;
+	bottom: 54px;
+	width: 40px;
+	height: 40px;
+	background-color: #ffffff;
+	border: none;
+	border-color: #ffffff;
+	border-radius: 50%;
+	box-shadow: $button-shadow;
+	z-index: 10;
+
+	&:hover {
+		box-shadow: $button-shadow-hover;
+		cursor: pointer;
+	}
+
+	&:active {
+		background-color: $background-elements-light;
+	}
+
+	&_prev {
+		left: 30px;
+
+		& > img {
+			transform: scaleX(-1);
+		}
+	}
+
+	&_next {
+		right: 40px;
+	}
+}
+
+.swiper-slide {
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	justify-content: center;
+	gap: 15px;
+	max-height: 114px;
+	width: 60%;
+
+	@media (min-width: 1024px) {
+		max-height: 160px;
+		width: auto;
+	}
+}
+
+.swiper-slide__header {
+	font-family: "Bebas Neue", "PT Sans", sans-serif;
+	font-size: 16px;
+	line-height: 19.2px;
+	color: $header-blue;
+
+	@media (min-width: 1024px) {
+		font-size: 25px;
+		line-height: 19.2px;
+	}
+}
+
+.swiper-slide__content {
+	font-family: "PT Sans", sans-serif;
+	font-size: 14px;
+	line-height: 23.2px;
+	color: $text-blue;
+
+	@media (min-width: 1024px) {
+		font-size: 20px;
+		line-height: 30px;
+	}
+}
+
+.swiper-pagination {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+}
+
+.controls {
+	position: absolute;
+	left: 20;
+	bottom: 13.33px;
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	gap: 14px;
+	justify-content: center;
+
+	@media (min-width: 1024px) {
+		left: 80px;
+		bottom: 295px;
+	}
+}
+
+.counter {
+	color: $text-blue;
+	font-size: 14px;
+}
+
+.controls-wrapper {
+	display: flex;
+	gap: 20px;
+}
+
+.control-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #fff;
+	border: 1px solid #dcdcdc;
+	border-radius: 50%;
+	width: 25px;
+	height: 25px;
+	font-size: 20px;
+	color: $text-blue;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: all 0.3s;
+
+	& > img {
+		transform: scale(0.7);
+	}
+
+	&:hover:not(:disabled) {
+		background-color: $background-elements-light;
+		color: $point-dark;
+	}
+
+	&:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+
+	@media (min-width: 1024px) {
+		width: 50px;
+		height: 50px;
+	}
+}
