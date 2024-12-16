@@ -78,7 +78,6 @@ const HistoricalData: React.FC = () => {
     }, [currentDate]);
 
     useEffect(() => {
-        console.log(window.screen.width);
         setWindowSize(window.screen.width);
     });
 
@@ -119,13 +118,14 @@ const HistoricalData: React.FC = () => {
         }
     };
 
-    const [isAtStart, setIsAtStart] = useState<boolean>(true); // Начальное состояние
+    const [isAtStart, setIsAtStart] = useState<boolean>(true);
     const [isAtEnd, setIsAtEnd] = useState<boolean>(false);
 
     const handleSlideChange = (swiper: SwiperType) => {
-        setIsAtStart(swiper.isBeginning); // Проверяем, начало ли это
-        setIsAtEnd(swiper.isEnd); // Проверяем, конец ли это
+        setIsAtStart(swiper.isBeginning);
+        setIsAtEnd(swiper.isEnd);
     };
+
     const handleRotateToPoint = (index: number) => {
         if (!pointsRef.current) {
             return;
@@ -139,12 +139,12 @@ const HistoricalData: React.FC = () => {
         setRotation(360 - angle - 45);
         setActivePoint(index);
     };
+
     const handlePrev = () => {
         if (activePoint > 0) {
             handleRotateToPoint(activePoint - 1);
         }
     };
-
     const handleNext = () => {
         if (activePoint < countPoints - 1) {
             handleRotateToPoint(activePoint + 1);
@@ -155,6 +155,7 @@ const HistoricalData: React.FC = () => {
         clickable: true,
         el: `.${styles["swiper-pagination"]}`,
     };
+
     return (
         <div className={styles.container}>
             <h1 className={styles.header}>
