@@ -41,7 +41,7 @@ jobs:
         run: npm run build
         
       - name: Copy build files to Jekyll destination folder
-        run: cp -R dist/* ./_site
+        run: mkdir -p ./_site && cp -R dist/* ./_site/
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
