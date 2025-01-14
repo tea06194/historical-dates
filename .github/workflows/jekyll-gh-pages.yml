@@ -39,19 +39,18 @@ jobs:
 
       - name: Build project
         run: npm run build
+        
+      - name: Copy build files to Jekyll destination folder
+        run: cp -R dist/* ./_site
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-  
-      - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./
-          destination: ./_site
-
-      - name: Copy build output to Jekyll source 
-        run: cp -r dist/* _site/
+      # - name: Build with Jekyll
+      #   uses: actions/jekyll-build-pages@v1
+      #   with:
+      #     source: ./
+      #     destination: ./_site
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
