@@ -222,16 +222,17 @@ $year-purple: #ef5da8;
 }
 
 .swiper-container {
-	height: 114px;
+	max-height: 134px;
 	width: 100%;
+	overflow: hidden;
 
 	@media (min-width: 1024px) {
 		position: absolute;
 		bottom: 104px;
 		width: calc(100% - 480px);
-		height: 135px;
+		max-height: 160px;
 		padding-left: 80px;
-		padding-right: 160px;
+		padding-right: 100px;
 	}
 }
 
@@ -241,7 +242,7 @@ $year-purple: #ef5da8;
 	position: absolute;
 	right: -5px;
 	bottom: 0;
-	width: 40%;
+	width: 20%;
 	height: 100%;
 	background: $fadeout-gradient;
 	z-index: 1;
@@ -292,13 +293,6 @@ $year-purple: #ef5da8;
 	align-items: start;
 	justify-content: center;
 	gap: 15px;
-	max-height: 114px;
-	width: 60%;
-
-	@media (min-width: 1024px) {
-		max-height: 160px;
-		width: auto;
-	}
 }
 
 .swiper-slide__header {
@@ -318,10 +312,12 @@ $year-purple: #ef5da8;
 	font-size: 14px;
 	line-height: 23.2px;
 	color: $text-blue;
+	padding-right: 20px;
 
 	@media (min-width: 1024px) {
 		font-size: 20px;
 		line-height: 30px;
+		padding-right: auto;
 	}
 }
 
